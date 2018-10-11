@@ -25,7 +25,11 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USphereComponent* SphereComp;
 
+	// pointer to our actor, black hole
 	AActor * blackHole;
+
+	// force being applied to direction vector
+	const int32 scalarForce = 1000000;
 
 protected:
 	// Called when the game starts or when spawned

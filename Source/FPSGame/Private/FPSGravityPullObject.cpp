@@ -36,9 +36,13 @@ void AFPSGravityPullObject::BeginPlay()
 
 
 	for (int32 i = 0; i < FoundActors.Num(); i++) {
-		UE_LOG(LogClass, Log, TEXT("Name: %s"), *FoundActors[i]->GetName());
+
+	/*	UE_LOG(LogClass, Log, TEXT("Name: %s"), *FoundActors[i]->GetName());*/
+
 		if (*FoundActors[i]->GetName() == FString(TEXT("BP_BlackHole_2"))) {
-			blackHole = FoundActors[i];
+
+			this->blackHole = FoundActors[i];
+
 		}
 	}
 
@@ -51,10 +55,14 @@ void AFPSGravityPullObject::Tick(float DeltaTime)
 
 	// add gravity simulation
 	if (blackHole != nullptr) {
+
 		FVector directionVector = FVector(blackHole->GetActorLocation() - this->GetActorLocation());
+
 		directionVector.Normalize();
+
 		if (directionVector.IsNormalized()) {
-			MeshComp->AddForce(directionVector * 1000000);
+
+			MeshComp->AddForce(directionVector * this->scalarForce);
 		}
 	
 	}

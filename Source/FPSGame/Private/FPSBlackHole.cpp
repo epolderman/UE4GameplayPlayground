@@ -30,8 +30,6 @@ void AFPSBlackHole::BeginPlay()
 
 void AFPSBlackHole::NotifyActorBeginOverlap(AActor * OtherActor)
 {
-	UE_LOG(LogClass, Log, TEXT("NotifyActorBeginOverlap BLACKHOLE!"));
-
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	AFPSGravityPullObject * MyCharacter = Cast<AFPSGravityPullObject>(OtherActor);

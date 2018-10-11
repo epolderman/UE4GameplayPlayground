@@ -35,8 +35,6 @@ void AFPSObjectiveActor::PlayEffects()
 
 void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor * OtherActor)
 {
-	UE_LOG(LogClass, Log, TEXT("NotifyActorBeginOverlap objective!"));
-
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	PlayEffects();
