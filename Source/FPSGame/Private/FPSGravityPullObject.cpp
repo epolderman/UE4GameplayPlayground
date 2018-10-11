@@ -61,7 +61,7 @@ void AFPSGravityPullObject::Tick(float DeltaTime)
 
 		if (directionVector.IsNormalized()) {
 
-			MeshComp->AddForce(directionVector * this->scalarForce);
+			MeshComp->AddForce(directionVector * this->SCALAR_FORCE);
 		}
 	
 	}

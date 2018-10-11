@@ -29,7 +29,7 @@ public:
 	AActor * blackHole;
 
 	// force being applied to direction vector
-	const int32 scalarForce = 1000000;
+	const int32 SCALAR_FORCE = 1000000;
 
 protected:
 	// Called when the game starts or when spawned
