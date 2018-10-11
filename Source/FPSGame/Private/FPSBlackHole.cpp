@@ -32,12 +32,12 @@ void AFPSBlackHole::NotifyActorBeginOverlap(AActor * OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	AFPSGravityPullObject * MyCharacter = Cast<AFPSGravityPullObject>(OtherActor);
+	AFPSGravityPullObject * gravityObject = Cast<AFPSGravityPullObject>(OtherActor);
 
-	if (MyCharacter != nullptr) {
+	if (gravityObject != nullptr) {
 
-		UE_LOG(LogClass, Log, TEXT("Destroying...!: %s"), *MyCharacter->GetName());
-		MyCharacter->Destroy();
+		// UE_LOG(LogClass, Log, TEXT("Destroying...!: %s"), *MyCharacter->GetName());
+		gravityObject->Destroy();
 	}
 }
 
