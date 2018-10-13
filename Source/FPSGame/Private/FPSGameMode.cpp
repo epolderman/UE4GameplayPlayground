@@ -4,6 +4,7 @@
 #include "FPSHUD.h"
 #include "FPSCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include <Kismet/GameplayStatics.h>
 
 AFPSGameMode::AFPSGameMode()
 {
@@ -20,6 +21,28 @@ void AFPSGameMode::CompletMission(APawn * InstigatorPawn)
 	if (InstigatorPawn) {
 
 		InstigatorPawn->DisableInput(nullptr);
+
+		if (SpectatingViewPointClass) {
+
+			TArray<AActor*> returnedActors;
+			UGameplayStatics::GetAllActorsOfClass(this, SpectatingViewPointClass, returnedActors);
+
+			if (returnedActors.Num() > 0) {
+
+				AActor* newViewTarget = returnedActors[0];
+
+				APlayerController * playerController = Cast<APlayerController>(InstigatorPawn->GetController());
+				if (playerController) {
+					playerController->SetViewTargetWithBlend(newViewTarget, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+				}
+			}
+		}
+		else
+		{
+				UE_LOG(LogClass, Log, TEXT("Error Grabbing Spectator Actor"));
+		}
+
+	
 	}
 
 	OnMissionCompleted(InstigatorPawn);
