@@ -36,11 +36,12 @@ void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent * OverlappedComponent
 		// only valid when calling on server
 		AFPSGameMode * gameMode = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
 		if (gameMode)
-			gameMode->CompletMission(mainCharacter);
+			gameMode->CompleteMission(mainCharacter);
 
 	}
 	else
 		UGameplayStatics::PlaySound2D(this, MissingMissionObjectiveSound);
+
 
 
 

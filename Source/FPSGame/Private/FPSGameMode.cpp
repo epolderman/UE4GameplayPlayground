@@ -16,7 +16,7 @@ AFPSGameMode::AFPSGameMode()
 	HUDClass = AFPSHUD::StaticClass();
 }
 
-void AFPSGameMode::CompletMission(APawn * InstigatorPawn)
+void AFPSGameMode::CompleteMission(APawn * InstigatorPawn)
 {
 	if (InstigatorPawn) {
 
@@ -36,10 +36,6 @@ void AFPSGameMode::CompletMission(APawn * InstigatorPawn)
 					playerController->SetViewTargetWithBlend(newViewTarget, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
 				}
 			}
-		}
-		else
-		{
-				UE_LOG(LogClass, Log, TEXT("Error Grabbing Spectator Actor"));
 		}
 
 	
