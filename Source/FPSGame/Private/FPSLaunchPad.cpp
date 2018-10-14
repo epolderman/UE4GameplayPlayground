@@ -4,6 +4,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/DecalComponent.h"
 #include "FPSCharacter.h"
+#include <Kismet/GameplayStatics.h>
 
 
 // Sets default values
@@ -23,7 +24,10 @@ AFPSLaunchPad::AFPSLaunchPad()
 	DecalComp->DecalSize = FVector(200.0f, 200.0f, 50.0f);
 	DecalComp->SetupAttachment(RootComponent);
 }
-
+void AFPSLaunchPad::PlayEffects()
+{
+	UGameplayStatics::SpawnEmitterAtLocation(this, LaunchFx, GetActorLocation());
+}
 
 void AFPSLaunchPad::HandleOverlap(UPrimitiveComponent * OverlappedComponent,
 	AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex,
@@ -34,6 +38,8 @@ void AFPSLaunchPad::HandleOverlap(UPrimitiveComponent * OverlappedComponent,
 	AFPSCharacter * mainCharacter = Cast<AFPSCharacter>(OtherActor);
 	if (mainCharacter != nullptr) {
 		UE_LOG(LogClass, Log, TEXT("Launching!!"));
+		UGameplayStatics::PlaySound2D(this, LaunchSound);
+		PlayEffects();
 		mainCharacter->LaunchCharacter(this->GetActorLocation() + FVector(1100.0f, -1100.0f, 1100.0f), true, true);
 	}
 	else
