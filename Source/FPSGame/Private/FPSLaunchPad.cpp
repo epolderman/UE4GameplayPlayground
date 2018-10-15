@@ -33,17 +33,23 @@ void AFPSLaunchPad::HandleOverlap(UPrimitiveComponent * OverlappedComponent,
 	AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex,
 	bool bFromSweep, const FHitResult & SweepResult)
 {
-	UE_LOG(LogClass, Log, TEXT("Overlapping!! %s"), *OtherActor->GetName());
+	UE_LOG(LogClass, Log, TEXT("Overlapping!! %s"), *OtherActor->GetClass()->GetName());
 
 	AFPSCharacter * mainCharacter = Cast<AFPSCharacter>(OtherActor);
 	if (mainCharacter != nullptr) {
-		UE_LOG(LogClass, Log, TEXT("Launching!!"));
 		UGameplayStatics::PlaySound2D(this, LaunchSound);
 		PlayEffects();
-		mainCharacter->LaunchCharacter(this->GetActorLocation() + FVector(1100.0f, -1100.0f, 1100.0f), true, true);
+
+		UE_LOG(LogClass, Log, TEXT("Launching!!"));
+		mainCharacter->LaunchCharacter(GetActorLocation() + FVector(1100.0f, -1100.0f, 1100.0f), true, true);
 	}
-	else
-		UE_LOG(LogClass, Log, TEXT("Failed Cast!!!"));
+	else {
+		UE_LOG(LogClass, Log, TEXT("Failed Cast!!! %s"), *OtherActor->GetName());	
+		if (OtherComp && OtherComp->IsSimulatingPhysics()) {
+			OtherComp->AddImpulse(FVector(1100.0f, -1100.0f, 1100.0f), NAME_None, true);
+		}
+	}
+		
 
 }
 
