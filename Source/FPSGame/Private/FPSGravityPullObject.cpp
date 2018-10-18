@@ -40,7 +40,7 @@ void AFPSGravityPullObject::BeginPlay()
 
 		if (*FoundActors[i]->GetName() == FString(TEXT("BP_BlackHole_2"))) {
 
-			this->blackHole = FoundActors[i];
+			blackHole = FoundActors[i];
 
 		}
 	}
