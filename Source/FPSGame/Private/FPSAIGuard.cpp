@@ -11,7 +11,6 @@
 AFPSAIGuard::AFPSAIGuard()
 {
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
-
 	PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
 	PawnSensingComp->OnHearNoise.AddDynamic(this, &AFPSAIGuard::OnNoiseHeard);
 
@@ -24,7 +23,6 @@ AFPSAIGuard::AFPSAIGuard()
 void AFPSAIGuard::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void AFPSAIGuard::OnPawnSeen(APawn * SeenPawn)
@@ -68,7 +66,8 @@ void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, 
 
 void AFPSAIGuard::resetOrientation()
 {
-	if (GuardState == EAIState::Alerted) {
+	if (GuardState == EAIState::Alerted)
+	{
 		return;
 	}
 
@@ -83,15 +82,12 @@ void AFPSAIGuard::SetGuardState(EAIState NewState)
 	}
 
 	GuardState = NewState;
-
 	OnStateChanged(GuardState);
-
 }
 
 // Called every frame
 void AFPSAIGuard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
