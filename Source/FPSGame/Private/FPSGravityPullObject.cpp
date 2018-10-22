@@ -35,7 +35,7 @@ void AFPSGravityPullObject::BeginPlay()
 
 
 	for (int32 i = 0; i < FoundActors.Num(); i++) {
-
+		// 
 	/*	UE_LOG(LogClass, Log, TEXT("Name: %s"), *FoundActors[i]->GetName());*/
 
 		if (*FoundActors[i]->GetName() == FString(TEXT("BP_BlackHole_2"))) {
