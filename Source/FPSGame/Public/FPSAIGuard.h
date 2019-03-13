@@ -50,6 +50,7 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
 	void OnStateChanged(EAIState NewState);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

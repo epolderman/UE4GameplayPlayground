@@ -5,6 +5,8 @@
 #include "DrawDebugHelpers.h"
 #include <GameFramework/Actor.h>
 #include "FPSGameMode.h"
+#include <EngineUtils.h>
+#include <Engine/StaticMeshActor.h>
 
 
 // Sets default values
@@ -23,6 +25,9 @@ AFPSAIGuard::AFPSAIGuard()
 void AFPSAIGuard::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	// grab target action points
+	// use the navigation mesh to patrol character
 }
 
 void AFPSAIGuard::OnPawnSeen(APawn * SeenPawn)
