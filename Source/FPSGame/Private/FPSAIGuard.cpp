@@ -72,9 +72,7 @@ void AFPSAIGuard::OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, 
 void AFPSAIGuard::resetOrientation()
 {
 	if (GuardState == EAIState::Alerted)
-	{
-		return;
-	}
+	return;
 
 	SetActorRotation(OriginalRotation);
 	SetGuardState(EAIState::Idle);
@@ -82,9 +80,8 @@ void AFPSAIGuard::resetOrientation()
 
 void AFPSAIGuard::SetGuardState(EAIState NewState)
 {
-	if (GuardState == NewState) {
-		return;
-	}
+	if (GuardState == NewState)
+	return;
 
 	GuardState = NewState;
 	OnStateChanged(GuardState);

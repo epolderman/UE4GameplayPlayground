@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include <Engine/TargetPoint.h>
 #include "FPSAIGuard.generated.h"
 
 class UPawnSensingComponent;
@@ -50,6 +51,13 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
 	void OnStateChanged(EAIState NewState);
+
+	// TODO: Target point actions in blueprint?, or just get the vector location?
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	ATargetPoint * pointOne;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	ATargetPoint * pointTwo;
 
 public:	
 	// Called every frame
