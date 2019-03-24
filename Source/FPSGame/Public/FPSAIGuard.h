@@ -52,12 +52,18 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
 	void OnStateChanged(EAIState NewState);
 
-	// TODO: Target point actions in blueprint?, or just get the vector location?
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	ATargetPoint * pointOne;
+	UPROPERTY(EditInstanceOnly, Category = "AI")
+	bool isEnabledForPatrolling;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	ATargetPoint * pointTwo;
+	UPROPERTY(EditInstanceOnly, Category = "AI", meta = (EditCondition = "isEnabledForPatrolling"))
+	AActor * PatrolPointOne;
+
+	UPROPERTY(EditInstanceOnly, Category = "AI", meta = (EditCondition="isEnabledForPatrolling"))
+	AActor * PatrolPointTwo;
+
+	AActor* CurrentPatrolPoint;
+
+	void MoveNextPatrolPoint();
 
 public:	
 	// Called every frame
